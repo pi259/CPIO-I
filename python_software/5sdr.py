@@ -1,4 +1,4 @@
-# teste devolvendo tipo de sinal e excel 4ghz
+# SDR 4Ghz - panda dataframe em excel
 
 import rtlsdr
 import numpy as np
@@ -9,10 +9,16 @@ def classify_signal(freq):
         return "WiFi (2.4GHz)"
     elif 87.5 <= freq <= 108:
         return "FM Radio"
-    elif 136 <= freq <= 174:
+    elif 47 <= freq <= 1000:
         return "VHF Radio"
-    elif 400 <= freq <= 470:
+    elif 470 <= freq <= 960:
         return "UHF Radio (Walkie-Talkie)"
+    elif 2402 <= freq <= 2480:
+        return "Military (2.4GHz)"
+    elif 1435 <= freq <= 1525:
+        return "Airforce (1.43-1.52GHz)"
+    elif 7.25 <= freq <= 7.75:
+        return "Navy (7.25-7.75GHz)"
     else:
         return "Other"
 
@@ -21,8 +27,8 @@ def scan_signals():
     sdr = rtlsdr.RtlSdr()
 
     # configure the device
-    sdr.sample_rate = 2.048e6  # Hz
-    sdr.center_freq = 1e6      # Hz
+    sdr.sample_rate = 3.2e6  # Hz
+    sdr.center_freq = 95e6      # Hz
     sdr.freq_correction = 60   # PPM
     sdr.gain = 'auto'
 

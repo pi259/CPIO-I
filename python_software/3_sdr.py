@@ -1,4 +1,4 @@
-# teste e devolvendo tipo de sinal
+# teste devolvendo tipo de sinal
 
 import numpy as np
 import rtlsdr
@@ -7,14 +7,18 @@ import matplotlib.pyplot as plt
 def classify_signal(freq):
     if 2412 <= freq <= 2472:
         return "WiFi (2.4GHz)"
-    elif 4910 <= freq <= 5825:
-        return "WiFi (5GHz)"
     elif 87.5 <= freq <= 108:
         return "FM Radio"
-    elif 136 <= freq <= 174:
+    elif 47 <= freq <= 1000:
         return "VHF Radio"
-    elif 400 <= freq <= 470:
+    elif 470 <= freq <= 960:
         return "UHF Radio (Walkie-Talkie)"
+    elif 2402 <= freq <= 2480:
+        return "Military (2.4GHz)"
+    elif 1435 <= freq <= 1525:
+        return "Airforce (1.43-1.52GHz)"
+    elif 7.25 <= freq <= 7.75:
+        return "Navy (7.25-7.75GHz)"
     else:
         return "Other"
 

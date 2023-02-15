@@ -1,20 +1,24 @@
-# teste devolvendo tipo de sinal e excel 5ghz
+# teste devolvendo tipo de sinal e excel 4ghz
 
-import numpy as np
 import rtlsdr
+import numpy as np
 import pandas as pd
 
 def classify_signal(freq):
     if 2412 <= freq <= 2472:
         return "WiFi (2.4GHz)"
-    elif 4910 <= freq <= 5825:
-        return "WiFi (5GHz)"
     elif 87.5 <= freq <= 108:
         return "FM Radio"
-    elif 136 <= freq <= 174:
+    elif 47 <= freq <= 1000:
         return "VHF Radio"
-    elif 400 <= freq <= 470:
+    elif 470 <= freq <= 960:
         return "UHF Radio (Walkie-Talkie)"
+    elif 2402 <= freq <= 2480:
+        return "Military (2.4GHz)"
+    elif 1435 <= freq <= 1525:
+        return "Airforce (1.43-1.52GHz)"
+    elif 7.25 <= freq <= 7.75:
+        return "Navy (7.25-7.75GHz)"
     else:
         return "Other"
 
@@ -32,7 +36,7 @@ def scan_signals():
     signals = []
 
     # scan for signals
-    while sdr.center_freq < 5e9:
+    while sdr.center_freq < 4e9:
         samples = sdr.read_samples(256*1024)
 
         # compute the power spectral density (PSD)
@@ -63,5 +67,3 @@ def scan_signals():
 
 if __name__ == "__main__":
     scan_signals()
-
-# This code scans the frequency range from 1Hz to 5GHz in steps of the sample rate, computes the power spectral density (PSD) of each step, finds the maximum value in the PSD, classifies the signal based on its frequency, and stores the results in a pandas dataframe. The dataframe is then saved to an Excel file.
