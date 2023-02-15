@@ -26,7 +26,7 @@ def main():
 	# Connect to SDR antenna dongle
 	sdr = rtlsdr.RtlSdr()
 	sdr.sample_rate = 2.4e6
-	sdr.center_freq = 100e6
+	sdr.center_freq = 1e6
 	sdr.gain = 10
 	sdr.set_bandwidth(2.4e6)
 
